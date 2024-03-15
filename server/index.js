@@ -63,7 +63,6 @@ app.post("/api/user/favorites", async (req, res) => {
 
 app.post("/api/user/favorite", async (req, res) => {
   let resStatus = 409;
-  console.log(req.body);
   if (req.body?.username && req.body?.movieId) {
     let user = await getUser(req.body.username);
     if (user) {
