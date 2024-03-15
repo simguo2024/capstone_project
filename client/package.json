@@ -1,0 +1,25 @@
+{
+  "name": "MinimalReactApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "khapeterk <khapeterk@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/style": "^0.8.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/material": "^5.15.12",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "axios": "^1.6.7",
+    "esbuild": "^0.14.49",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
+  },
+  "scripts": {
+    "build": "esbuild app.jsx --bundle --outdir=../server/build/js"
+  }
+}
