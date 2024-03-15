@@ -37,9 +37,7 @@ export default function Favorites() {
         borderRadius: "15px",
         overflow: "hidden",
         marginTop: 2,
-        maxWidth: "calc(100% - 50px)", 
         padding: "0 16px", 
-        variant:"h6",
       }}
     >
       <Table aria-label="favorite movies table">

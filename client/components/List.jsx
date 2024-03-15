@@ -12,37 +12,9 @@ import {
   TextField,
   InputAdornment,
 } from "@mui/material";
-import Favorite from "@mui/icons-material/Favorite";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-
-function FavoriteButton({ movie, username, setRerender }) {
-    const handleOnClick = () => {
-    axios
-      .post("/api/user/" + (movie.favorited ? "unfavorite" : "favorite"), {
-        username,
-        movieId: movie.id,
-      })
-      .then(() => {
-        setRerender({}); 
-      })
-      .catch(error => {
-        console.error(`Failed to ${movie.favorited ? 'unfavorite' : 'favorite'} movieId: ${movie.id}`, error);
-      });
-  };
-
-  return (
-    <>
-      {movie.favorited ? (
-        <Favorite onClick={handleOnClick} />
-      ) : (
-        <FavoriteBorder onClick={handleOnClick} />
-      )}
-    </>
-  );
-}
+import FavoriteButton from "./FavoriteButton";
 
 export default function List() {
-  const [data, setData] = React.useState([]);
   const [rerender, setRerender] = React.useState({}); 
   const [displayedData, setDisplayedData] = React.useState([]); 
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -62,7 +34,6 @@ export default function List() {
             favorited: movieIds.has(movie.id),
           }));
 
-        setData(updatedMoviesData);
         setDisplayedData(updatedMoviesData); 
       } catch (error) {
         console.error("Error fetching search results", error);
@@ -89,7 +60,6 @@ export default function List() {
         }));
         
         if (!searchQuery.trim()) {
-          setData(updatedMoviesData)
           setDisplayedData(updatedMoviesData)
         }
         handleSearch();

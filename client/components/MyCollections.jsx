@@ -11,39 +11,12 @@ import {
   useMediaQuery,
   Typography,
 } from "@mui/material";
-import Favorite from "@mui/icons-material/Favorite";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-
-function FavoriteButton({ movie, username, setRerender }) {
-  const handleOnClick = () => {
-    axios
-      .post("/api/user/" + (movie.favorited ? "unfavorite" : "favorite"), {
-        username,
-        movieId: movie.id,
-      })
-      .then(() => {
-        setRerender({});
-      })
-      .catch(error => {
-        console.error(`Failed to ${movie.favorited ? 'unfavorite' : 'favorite'} movieId: ${movie.id}`, error);
-      });
-  };
-
-  return (
-    <>
-      {movie?.favorited ? (
-        <Favorite onClick={handleOnClick} />
-      ) : (
-        <FavoriteBorder onClick={handleOnClick} />
-      )}
-    </>
-  );
-}
+import FavoriteButton from "./FavoriteButton";
 
 export default function MyCollections() {
   const [rerender, setRerender] = React.useState({});
   const [displayedData, setDisplayedData] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true); 
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const { username } = useOutletContext();
 
@@ -51,7 +24,7 @@ export default function MyCollections() {
 
   React.useEffect(() => {
     const fetchFavorites = async () => {
-      setIsLoading(true); 
+      setIsLoading(true);
       try {
         const { data: userFavorites } = await axios.get(
           `/api/user/${username}/favorites`
@@ -60,31 +33,47 @@ export default function MyCollections() {
           ...movie,
           favorited: true,
         }));
-        setDisplayedData(updatedMoviesData || []); 
+        setDisplayedData(updatedMoviesData || []);
       } catch (error) {
         console.error("Fetching favorites failed", error);
-      }finally {
-        setIsLoading(false); 
+      } finally {
+        setIsLoading(false);
       }
     };
 
     if (username) {
       fetchFavorites();
     }
-  }, [username, rerender]); 
+  }, [username, rerender]);
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   if (isLoading) {
     return (
-      <Box sx={{ height: "50vh", padding: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Box
+        sx={{
+          height: "50vh",
+          padding: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Typography variant="h6">Loading your favorites...</Typography>
       </Box>
     );
   } else if (displayedData.length === 0) {
     return (
-      <Box sx={{ height: "50vh", padding: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Box
+        sx={{
+          height: "50vh",
+          padding: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Typography variant="h6">
           You don't have any favorites yet. Start adding some!
         </Typography>

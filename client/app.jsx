@@ -1,10 +1,9 @@
-import './app.css';
 import *  as React from 'react'
 import { createRoot } from 'react-dom/client'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import { Link, Navigate, Outlet, RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom'
+import { Navigate, Outlet, RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom'
 import Login from './components/Login'
 import List from './components/List'
 import Register from './components/Register'
