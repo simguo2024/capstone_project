@@ -2,6 +2,13 @@
 
 Movie Zone is a web application for browsing and managing a collection of movies. Users can search for movies, add them to their favorites, and view popular movies. The backend is built with Node.js and Express, and the frontend is a React application.
 
+## Technologies Used
+
+- Frontend: React, Material-UI
+- Backend: Node.js, Express, MySQL
+- Database: MySQL
+- API: The Movie Database
+  
 ## Features
 
 - Search for movies using The Movie Database API.
@@ -24,13 +31,6 @@ Movie Zone is a web application for browsing and managing a collection of movies
   
   ![image](https://github.com/simguo2024/capstone_project/assets/152562804/39614968-f134-4250-9b21-ebd531929fcd)
 
-
-## Technologies Used
-
-- Frontend: React, Material-UI
-- Backend: Node.js, Express, MySQL
-- Database: MySQL
-- API: The Movie Database
 
 ## Project Structure
 
